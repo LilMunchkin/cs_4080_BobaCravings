@@ -1,0 +1,5 @@
+# To re-compile all the files using g++:
+g++ main.cpp
+
+# To run and see the result, please use the following command line:
+./a.out
