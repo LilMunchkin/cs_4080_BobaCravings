@@ -1,29 +1,27 @@
 from collections import deque
+import time
 
 def listMethod():
     stack = []
-    stack.append(2)
-    stack.append("hello")
-    print(stack.pop())
-    print(stack.pop())
 
     for i in range(1000000):
         stack.append(i)
-        print(i)
 
-    stack.clear()
-
-    try:
+    for j in range(1000000):
         stack.pop()
-    except:
-        print("Empty")
 
 def dequeMethod():
     stack = deque()
-    stack.append(4)
-    stack.append("world")
-    print(stack.pop())
-    print(stack.pop())
 
+    for i in range(1000000):
+        stack.append(i)
+
+    for j in range(1000000):
+        stack.pop()
+
+startTime = time.time()
 listMethod()
-#dequeMethod()
+print("Execution Time for List Based Stack: ", time.time() - startTime, " seconds")
+startTime = time.time()
+dequeMethod()
+print("Execution Time for Deque Based Stack: ", time.time() - startTime, " seconds")
