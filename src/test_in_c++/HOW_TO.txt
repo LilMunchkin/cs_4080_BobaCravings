@@ -2,4 +2,4 @@
 g++ main.cpp
 
 # To run and see the result, please use the following command line:
-./a.out
+./a.out NUMBER_OF_ELEMENTS NUMBER_OF_ITERATIONS
