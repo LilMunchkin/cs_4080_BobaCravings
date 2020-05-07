@@ -7,14 +7,18 @@ import psutil
 def listMethod():
     stack = []
 
+    startTime = time.time()
     for i in range(1000000):
         stack.append(i)
+    print("Push Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     listProcess = psutil.Process(os.getpid())
     print(listProcess.memory_info().rss, " bytes used after pushing in list")
 
+    startTime = time.time()
     for j in range(1000000):
         stack.pop()
+    print("Pop Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     listProcess = psutil.Process(os.getpid())
     print(listProcess.memory_info().rss, " bytes used after popping in list")
@@ -22,14 +26,18 @@ def listMethod():
 def dequeMethod():
     stack = deque()
 
+    startTime = time.time()
     for i in range(1000000):
         stack.append(i)
+    print("Push Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     dequeProcess = psutil.Process(os.getpid())
     print(dequeProcess.memory_info().rss, " bytes used after pushing in deque")
 
+    startTime = time.time()
     for j in range(1000000):
         stack.pop()
+    print("Pop Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     dequeProcess = psutil.Process(os.getpid())
     print(dequeProcess.memory_info().rss, " bytes used after popping in deque")
@@ -37,32 +45,40 @@ def dequeMethod():
 def lifoQueueMethod():
     stack = LifoQueue(maxsize = 1000000)
 
+    startTime = time.time()
     for i in range(1000000):
         stack.put(i)
+    print("Push Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     lifoProcess = psutil.Process(os.getpid())
-    print(lifoProcess.memory_info().rss, " bytes used after pushing in lifo")
+    print(lifoProcess.memory_info().rss, " bytes used after pushing in LIFO")
 
+    startTime = time.time()
     for j in range(1000000):
         stack.get()
+    print("Pop Elements Time: ", (time.time() - startTime) / 100, "seconds")
 
     lifoProcess = psutil.Process(os.getpid())
     print(lifoProcess.memory_info().rss, " bytes used after popping in lifo")
 
 initProcess = psutil.Process(os.getpid())
-print(initProcess.memory_info().rss, " total bytes used")
+print(initProcess.memory_info().rss, " initial bytes used")
+print("")
 
-# startTime = time.time()
-# listMethod()
-# print("Execution Time for List Based Stack: ", time.time() - startTime, "seconds")
+startTime = time.time()
+listMethod()
+print("Execution Time for List Based Stack: ", time.time() - startTime, "seconds")
+print("")
 
-# startTime = time.time()
-# dequeMethod()
-# print("Execution Time for Deque Based Stack: ", time.time() - startTime, "seconds")
+startTime = time.time()
+dequeMethod()
+print("Execution Time for Deque Based Stack: ", time.time() - startTime, "seconds")
+print("")
 
-# startTime = time.time()
-# lifoQueueMethod()
-# print("Execution Time for Lifo Queue Based Stack: ", time.time() - startTime, "seconds")
+startTime = time.time()
+lifoQueueMethod()
+print("Execution Time for Lifo Queue Based Stack: ", time.time() - startTime, "seconds")
+print("")
 
 #Multiple Tests
 # startTime = time.time()
