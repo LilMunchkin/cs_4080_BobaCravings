@@ -1,6 +1,8 @@
 from collections import deque
 from queue import LifoQueue
 import time
+import os
+import psutil
 
 def listMethod():
     stack = []
@@ -38,3 +40,5 @@ print("Execution Time for Deque Based Stack: ", time.time() - startTime, " secon
 startTime = time.time()
 lifoQueueMethod()
 print("Execution Time for Lifo Queue Based Stack: ", time.time() - startTime, " seconds")
+process = psutil.Process(os.getpid())
+print(process.memory_info().rss)
